@@ -1,0 +1,5 @@
+# CMake builds
+cmake -S . -B build -DLLVM_DIR=/usr/local/lib/cmake/llvm -G Ninja
+
+# Run a pass
+opt -load-pass-plugin=build/src/SimpleLICM.so -passes=simple-licm -S -o outputs/matmul-licm.ll inputs/matmul-canonical.ll
